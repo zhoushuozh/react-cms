@@ -2,7 +2,8 @@ import React from 'react';
 import { Layout } from 'antd';
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Navigation from './components/Navigation'
+import NavLeft from './components/NavLeft'
+import ContentHeader from './components/ContentHeader'
 
 const { Content, Sider } = Layout;
 
@@ -16,11 +17,13 @@ export default class Admin extends React.Component {
       }}>
         <Sider width={200} style={{ 
             background: '#fff',
-            borderRight: '1px solid #eee'
+            borderRight: '1px solid #eee',
+            overflowY: 'auto'
           }}>
-          <Navigation />
+          <NavLeft />
         </Sider>
         <Layout style={{ background: '#fff' }}>
+          <ContentHeader />
           <Content
             style={{
               background: '#fff',
