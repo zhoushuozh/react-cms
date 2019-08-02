@@ -1,7 +1,6 @@
 import React from 'react';
 import { Menu, Dropdown, Icon, Avatar } from 'antd';
 import './index.less';
-// import { formateDate } from '../../utils/utils';
 
 export default class Header extends React.Component {
   constructor(props) {

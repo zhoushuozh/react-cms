@@ -1,14 +1,14 @@
 import React from 'react';
 
-export default class Home extends React.Component{
+export default class NoMatch extends React.Component{
   render() {
     return(<div>
       <div style={{
-        fontSize: '48px',
+        fontSize: '36px',
         fontWeight: 'bold',
         textAlign: 'center',
         padding: '200px 0'
-      }}>Hello, World!</div>
+      }}>404 Not Found!</div>
     </div>)
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Menu } from 'antd';
 import MenuConfig from './../../config/menuConfig'
+import { NavLink } from 'react-router-dom';
 
 const { SubMenu } = Menu;
 
@@ -28,7 +29,7 @@ export default class NavLeft extends React.Component {
       }
 
       return (<Menu.Item key={item.key}>
-        <span>{item.title}</span>
+        <NavLink to={item.key}><span>{item.title}</span></NavLink>
       </Menu.Item>)
     })
   }
@@ -50,6 +51,7 @@ export default class NavLeft extends React.Component {
         mode="inline"
         openKeys={this.state.openKeys}
         onOpenChange={this.onOpenChange}
+        defaultSelectedKeys={['/admin']}
         style={{
           height: '100%'
         }}
