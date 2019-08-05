@@ -21,8 +21,8 @@ export default class Router extends React.Component{
               </Switch>
             </Admin>
           } />
-          <Route component={NoMatch} />
           <Route path="/login" component={Login} />
+          <Route component={NoMatch} />
         </Switch>
       </App>
     </BrowserRouter>)

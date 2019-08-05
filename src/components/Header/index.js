@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu, Dropdown, Icon, Avatar } from 'antd';
+import { Link } from 'react-router-dom';
 import './index.less';
 
 export default class Header extends React.Component {
@@ -25,10 +26,12 @@ export default class Header extends React.Component {
 
     return (
       <div className="header">
-        <div className="logo">
-          <img src="/assets/images/logo.svg" alt="react-icon"/>
-          <h1>react-cms</h1>
-        </div>
+        <Link to="/admin">
+          <div className="logo">
+            <img src="/assets/images/logo.svg" alt="react-icon" />
+            <h1>react-cms</h1>
+          </div>
+        </Link>
         <div className="user-info">
           <Dropdown overlay={menu} trigger={['click']}>
             <div className="ant-dropdown-link">

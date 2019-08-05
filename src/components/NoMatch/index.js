@@ -8,7 +8,7 @@ export default class NoMatch extends React.Component{
         fontWeight: 'bold',
         textAlign: 'center',
         padding: '200px 0'
-      }}>404 Not Found!</div>
+      }}>404 Not Found</div>
     </div>)
   }
 }
