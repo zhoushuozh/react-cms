@@ -17,11 +17,11 @@ const menuList = [
       },
       {
         title: 'Loading',
-        key: '/admin/ui/loading'
+        key: '/admin/ui/loadings'
       },
       {
         title: '通知提醒',
-        key: '/admin/ui/notification'
+        key: '/admin/ui/notifications'
       },
       {
         title: '全局Message',

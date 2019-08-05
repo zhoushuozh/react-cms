@@ -1,11 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import App from './App';
+import NoMatch from './components/NoMatch';
 import Admin from './Admin';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Buttons from './pages/ui/Buttons';
-import NoMatch from './components/NoMatch';
+import Modals from './pages/ui/Modals';
+import Loadings from './pages/ui/Loadings';
 
 export default class Router extends React.Component{
   render() {
@@ -17,6 +19,8 @@ export default class Router extends React.Component{
               <Switch>
                 <Route path="/admin" exact component={Home} />
                 <Route path="/admin/ui/buttons" component={Buttons} />
+                <Route path="/admin/ui/modals" component={Modals} />
+                <Route path="/admin/ui/loadings" component={Loadings} />
                 <Route component={NoMatch} />
               </Switch>
             </Admin>
