@@ -25,7 +25,7 @@ const menuList = [
       },
       {
         title: '全局Message',
-        key: '/admin/ui/message'
+        key: '/admin/ui/messages'
       },
       {
         title: 'Tab页签',
