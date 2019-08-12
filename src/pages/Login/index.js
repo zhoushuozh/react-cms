@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { Form, Icon, Input, Button, Checkbox, Spin} from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Spin, message} from 'antd';
 import './index.less'
 
 class LoginForm extends React.Component {
-  state = {
-    loading: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false
+    };
+  }
   
   handleSubmit = (e) => {
     e.preventDefault();
@@ -14,6 +17,10 @@ class LoginForm extends React.Component {
       if (!err) {
         console.log('Received values of form: ', values);
         this.setState({ loading: true });
+        setTimeout(() => {
+          message.success('登录成功')
+          this.props.history.push("/admin");
+        }, 1500);
       } else {
         console.log(err)
       }

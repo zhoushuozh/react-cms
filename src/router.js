@@ -4,6 +4,7 @@ import App from './App';
 import NoMatch from './components/NoMatch';
 import Admin from './Admin';
 import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import Buttons from './pages/ui/Buttons';
 import Modals from './pages/ui/Modals';
@@ -34,6 +35,7 @@ export default class Router extends React.Component{
             </Admin>
           } />
           <Route path="/login" component={Login} />
+          <Route path="/signup" component={SignUp} />
           <Route component={NoMatch} />
         </Switch>
       </App>
