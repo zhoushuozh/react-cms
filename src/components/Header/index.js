@@ -19,7 +19,7 @@ export default class Header extends React.Component {
           <a href="/">个人中心</a>
         </Menu.Item>
         <Menu.Item key="1">
-          <a href="/">登出</a>
+          <a href="/login">登出</a>
         </Menu.Item>
       </Menu>
     );
