@@ -10,6 +10,7 @@ import Modals from './pages/ui/Modals';
 import Loadings from './pages/ui/Loadings';
 import Notifications from './pages/ui/Notifications';
 import Messages from './pages/ui/Messages';
+import TabsPage from './pages/ui/TabsPage';
 
 export default class Router extends React.Component{
   render() {
@@ -25,6 +26,7 @@ export default class Router extends React.Component{
                 <Route path="/admin/ui/loadings" component={Loadings} />
                 <Route path="/admin/ui/notifications" component={Notifications} />
                 <Route path="/admin/ui/messages" component={Messages} />
+                <Route path="/admin/ui/tabs" component={TabsPage} />
                 <Route component={NoMatch} />
               </Switch>
             </Admin>

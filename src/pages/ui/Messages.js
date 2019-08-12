@@ -25,7 +25,7 @@ export default class Messages extends React.Component {
           <Button onClick={() => this.onMessage('success') }>Success</Button>
           <Button onClick={() => this.onMessage('error')}>Error</Button>
           <Button onClick={() => this.onMessage('warning') }>Warning</Button>
-          <Button onClick={() => this.onMessage('warning', 10)}>Delay</Button>
+          <Button onClick={() => this.onMessage('success', 10)}>Delay</Button>
           <Button onClick={ this.promiseMessage }>Promise</Button>
           <Button onClick={ this.loadingMessage }>Loading</Button>
         </div>
