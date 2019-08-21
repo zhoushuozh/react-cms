@@ -5,7 +5,7 @@ import axios from 'axios'
 const { Search } = Input;
 const { confirm } = Modal;
 
-export default class BasicTable extends React.Component{
+export default class Tables extends React.Component{
 
   state = {
     tableData: [],
@@ -88,7 +88,27 @@ export default class BasicTable extends React.Component{
     });
   }
 
+  handleChange = (pagination, filters, sorter) => {
+    console.log('Various parameters', pagination, filters, sorter);
+    this.setState({
+      filteredInfo: filters,
+      sortedInfo: sorter,
+    });
+  };
+
   render() {
+    let {
+      tableData,
+      selectedRowKeys,
+      showSelect,
+      tableLoading
+    } = this.state
+
+    let rowSelection = showSelect ? {
+      selectedRowKeys,
+      onChange: this.rowSelectedChange
+    } : undefined
+    
     const columns = [
       {
         title: 'ID',
@@ -104,12 +124,15 @@ export default class BasicTable extends React.Component{
         title: 'Gender',
         dataIndex: 'gender',
         key: 'gender',
-        render: text => <span>{text === 1 ? '男' : text === 2 ? '女' : ''}</span>
+        render: text => <span>{text === 1 ? '男' : text === 2 ? '女' : ''}</span>,
+        filters: [{ text: '男', value: 1 }, { text: '女', value: 2 }],
+        onFilter: (value, record) => record.gender === value
       },
       {
         title: 'Age',
         dataIndex: 'age',
         key: 'age',
+        sorter: (a, b) => a.age - b.age
       },
       {
         title: 'Address',
@@ -142,13 +165,6 @@ export default class BasicTable extends React.Component{
       }
     ]
     
-    let { tableData, selectedRowKeys, showSelect, tableLoading } = this.state
-    let rowSelection = showSelect ? {
-      selectedRowKeys,
-      onChange: this.rowSelectedChange
-    } : undefined
-    
-
     return (<div>
       <div style={{
           display: 'flex',
