@@ -12,24 +12,36 @@ export default class Tables extends React.Component{
     selectedRowKeys: [],
     selectedRows: [],
     tableLoading: false,
-    showSelect: false
+    showSelect: false,
+    total: 0,
+    page: 1,
+    pageSize: 10
   }
 
   componentWillMount(){
     this.getData()
   }
 
+  onSearch = () => {
+    this.setState({
+      total: 0,
+      page: 1
+    });
+    this.getData()
+  }
+
   getData = () => {
     this.setState({ tableLoading: true })
     axios.post('/table', {
-      page: 1,
-      row: 10
+      page: this.state.page,
+      row: this.state.pageSize
     })
       .then(res => {
         this.setState({ tableLoading: false })
         if (res.data.code === 1) {
           this.setState({
-            tableData: res.data.data.list
+            tableData: res.data.data.list,
+            total: res.data.data.totalRow
           })
         } else {
           message.error(res.data.description)
@@ -96,12 +108,30 @@ export default class Tables extends React.Component{
     });
   };
 
+  pageChange = (page, pageSize) => {
+    this.setState({
+      page: page,
+      pageSize: pageSize
+    })
+    this.getData()
+  }
+
+  pageSizeChange = (current, size) => {
+    this.setState({
+      page: current,
+      pageSize: size
+    })
+    this.getData()
+  }
+
   render() {
     let {
       tableData,
       selectedRowKeys,
       showSelect,
-      tableLoading
+      tableLoading,
+      total,
+      pageSize
     } = this.state
 
     let rowSelection = showSelect ? {
@@ -156,7 +186,7 @@ export default class Tables extends React.Component{
         dataIndex: 'action',
         key: 'action',
         render: (text, record) => (<span>
-          <Button type="link">详情</Button>
+          <Button type="link">编辑</Button>
           <Divider type="vertical" />
           <Popconfirm placement="left" title="是否删除此条数据?" onConfirm={() => this.handleDelItem(record)} okText="是" cancelText="否">
             <Button type="link">删除</Button>
@@ -164,6 +194,16 @@ export default class Tables extends React.Component{
         </span>)
       }
     ]
+
+    const pagination = total ? {
+      total: total,
+      pageSize: pageSize,
+      pageSizeOptions: ['10', '20', '30'],
+      onChange: this.pageChange,
+      onShowSizeChange: this.pageSizeChange,
+      showSizeChanger: true,
+      showQuickJumper: true
+    } : false
     
     return (<div>
       <div style={{
@@ -173,7 +213,7 @@ export default class Tables extends React.Component{
         }}>
         <Search
           placeholder="input search text"
-          onSearch={this.getData}
+          onSearch={this.onSearch}
           enterButton
           style={{ width: 200 }}
         />
@@ -190,7 +230,15 @@ export default class Tables extends React.Component{
           <Button onClick={ this.handleRowSelectionChange }>{rowSelection ? '取消批量操作' : '批量操作' }</Button>
         </div>
       </div>
-      <Table loading={tableLoading} rowSelection={rowSelection} rowKey={record => record.id} columns={columns} dataSource={tableData}></Table>
+      <Table
+        loading={tableLoading}
+        rowSelection={rowSelection}
+        rowKey={record => record.id}
+        columns={columns}
+        dataSource={tableData}
+        pagination={pagination}
+    >
+      </Table>
     </div>)
   }
 }
